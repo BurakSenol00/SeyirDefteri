@@ -42,7 +42,7 @@
             cmbCikisLimani = new ComboBox();
             btnSeferOlustur = new Button();
             btnGec = new Button();
-            listView1 = new ListView();
+            LvSeferler = new ListView();
             SuspendLayout();
             // 
             // label1
@@ -161,6 +161,7 @@
             btnSeferOlustur.TabIndex = 12;
             btnSeferOlustur.Text = "Sefer Oluştur";
             btnSeferOlustur.UseVisualStyleBackColor = false;
+            btnSeferOlustur.Click += btnSeferOlustur_Click;
             // 
             // btnGec
             // 
@@ -173,13 +174,13 @@
             btnGec.Text = "Sonraki";
             btnGec.UseVisualStyleBackColor = false;
             // 
-            // listView1
+            // LvSeferler
             // 
-            listView1.Location = new Point(8, 319);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(360, 232);
-            listView1.TabIndex = 14;
-            listView1.UseCompatibleStateImageBehavior = false;
+            LvSeferler.Location = new Point(8, 319);
+            LvSeferler.Name = "LvSeferler";
+            LvSeferler.Size = new Size(360, 232);
+            LvSeferler.TabIndex = 14;
+            LvSeferler.UseCompatibleStateImageBehavior = false;
             // 
             // Form1
             // 
@@ -187,7 +188,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
             ClientSize = new Size(380, 563);
-            Controls.Add(listView1);
+            Controls.Add(LvSeferler);
             Controls.Add(btnGec);
             Controls.Add(btnSeferOlustur);
             Controls.Add(cmbCikisLimani);
@@ -203,7 +204,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Seyir Defteri";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -224,6 +227,6 @@
         private ComboBox cmbCikisLimani;
         private Button btnSeferOlustur;
         private Button btnGec;
-        private ListView listView1;
+        private ListView LvSeferler;
     }
 }

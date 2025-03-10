@@ -11,6 +11,10 @@ namespace SeyirDefteri.Core.Classlar
         public int GemiId { get; set; }
         public string GemiAdi { get; set; }
         public decimal Tonaji { get; set; }
-        
+
+        public override string ToString()
+        {
+            return "Gemi Adı: " + GemiAdi;
+        }
     }
 }
