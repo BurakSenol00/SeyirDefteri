@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35818.85 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeyirDefteri.UI", "SeyirDefteri.UI\SeyirDefteri.UI.csproj", "{67290AD3-2D43-47A1-919A-A2633DA4ED49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeyirDefteri.Core", "SeyirDefteri.Core\SeyirDefteri.Core.csproj", "{53DAA18B-E213-4A55-A7C3-1D073D801C82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{67290AD3-2D43-47A1-919A-A2633DA4ED49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67290AD3-2D43-47A1-919A-A2633DA4ED49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67290AD3-2D43-47A1-919A-A2633DA4ED49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53DAA18B-E213-4A55-A7C3-1D073D801C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53DAA18B-E213-4A55-A7C3-1D073D801C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53DAA18B-E213-4A55-A7C3-1D073D801C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53DAA18B-E213-4A55-A7C3-1D073D801C82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
