@@ -173,6 +173,7 @@
             btnGec.TabIndex = 13;
             btnGec.Text = "Sonraki";
             btnGec.UseVisualStyleBackColor = false;
+            btnGec.Click += btnGec_Click;
             // 
             // LvSeferler
             // 
