@@ -16,5 +16,10 @@ namespace SeyirDefteri.Core.Classlar
         public string UgrayacagiLiman { get; set; }
         public string VarisLimani { get; set; }
         public string CikisLimani { get; set; }
+
+        public override string ToString()
+        {
+            return "Çıkış Limanı:" + CikisLimani + " Uğrayacağı Liman " + UgrayacagiLiman + " Varış Limanı " + VarisLimani;
+        }
     }
 }
