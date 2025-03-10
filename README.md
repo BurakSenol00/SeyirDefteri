@@ -1,1 +1,1 @@
-# SeyirDefteri.UI
+# SeyirDefteri
