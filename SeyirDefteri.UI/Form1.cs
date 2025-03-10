@@ -102,17 +102,17 @@ namespace SeyirDefteri.UI
 
         private void btnSeferOlustur_Click(object sender, EventArgs e)
         {
-            if(dtpCikisTarihi.Value>dtpVarisTarihi.Value)
+            if (dtpCikisTarihi.Value > dtpVarisTarihi.Value)
             {
                 MessageBox.Show("Varýþ Tarihi Çýkýþ Tarihinden Erken Olamaz");
                 return;
             }
-            if(cmbGemiAdi.SelectedItem==null|| cmbCikisLimani.SelectedItem == null || cmbUgradigiLiman.SelectedItem == null || cmbVarisLimani.SelectedItem == null)
+            if (cmbGemiAdi.SelectedItem == null || cmbCikisLimani.SelectedItem == null || cmbUgradigiLiman.SelectedItem == null || cmbVarisLimani.SelectedItem == null)
             {
                 MessageBox.Show("Lütfen Boþluklarý Doldurunuz");
                 return;
             }
-            if(cmbCikisLimani.SelectedItem==cmbUgradigiLiman.SelectedItem||cmbUgradigiLiman.SelectedItem==cmbVarisLimani.SelectedItem||cmbVarisLimani.SelectedItem==cmbCikisLimani.SelectedItem)
+            if (cmbCikisLimani.SelectedItem == cmbUgradigiLiman.SelectedItem || cmbUgradigiLiman.SelectedItem == cmbVarisLimani.SelectedItem || cmbVarisLimani.SelectedItem == cmbCikisLimani.SelectedItem)
             {
                 MessageBox.Show("Sefer sýrasýnda girilen duraklar ayný olamaz");
                 return;
@@ -124,7 +124,7 @@ namespace SeyirDefteri.UI
                 CikisLimani = cmbCikisLimani.SelectedItem.ToString(),
                 UgrayacagiLiman = cmbUgradigiLiman.SelectedItem.ToString(),
                 VarisLimani = cmbVarisLimani.SelectedItem.ToString(),
-                Gemi = cmbGemiAdi.SelectedItem as Gemi 
+                Gemi = cmbGemiAdi.SelectedItem as Gemi
             };
             ListViewItem listViewItem = new ListViewItem();
             listViewItem.Text = (id++).ToString();
@@ -138,8 +138,8 @@ namespace SeyirDefteri.UI
             LvSeferler.Items.Add(listViewItem);
             SeyirKayitlari.Add(seyirKaydi);
             Temizle();
-               
-            
+
+
         }
         private void Temizle()
         {
@@ -149,7 +149,21 @@ namespace SeyirDefteri.UI
             cmbUgradigiLiman.SelectedItem = null;
             cmbVarisLimani.SelectedItem = null;
             cmbGemiAdi.SelectedItem = null;
-            
+
+        }
+
+        private void btnGec_Click(object sender, EventArgs e)
+        {
+           if(SeyirKayitlari.Count>0)
+            {
+                Form2 form2 = new Form2(SeyirKayitlari);
+                form2.ShowDialog();
+            }
+           else
+            {
+                MessageBox.Show("Lütfen Seyir Kayýtlarýný Listeye Ekleyiniz");
+                return;
+            }
         }
     }
 }
