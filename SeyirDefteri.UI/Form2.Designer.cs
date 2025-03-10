@@ -153,6 +153,7 @@
             btnUrunEkle.TabIndex = 12;
             btnUrunEkle.Text = "Ürün Ekle";
             btnUrunEkle.UseVisualStyleBackColor = false;
+            btnUrunEkle.Click += btnUrunEkle_Click;
             // 
             // lvGonderim
             // 
@@ -192,6 +193,7 @@
             Controls.Add(txtUrun);
             Name = "Form2";
             Text = "Form2";
+            Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)nupTonaj).EndInit();
             ResumeLayout(false);
             PerformLayout();
