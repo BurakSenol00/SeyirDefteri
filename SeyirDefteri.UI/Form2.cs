@@ -21,11 +21,7 @@ namespace SeyirDefteri.UI
         {
             foreach (var seyir in seyirkayitlari)
             {
-                if (seyir.Gemi == null)
-                {
-                    MessageBox.Show("Sefer KAyıtlarındaki Gemi Bilgisi Eksik");
-                    return;
-                }
+               
                 cmbSeferler.Items.Add(seyir);
             }
         }
@@ -83,9 +79,11 @@ namespace SeyirDefteri.UI
         private void Form2_Load(object sender, EventArgs e)
         {
             FirmalarıEkle();
+            ListviewSutunEkle();
+            
 
         }
-        int id = 0;
+        int id = 1;
         int ilgiliKisiId = 0;
         int urunId = 1;
         private Gemi seciliGemi;
@@ -122,7 +120,7 @@ namespace SeyirDefteri.UI
 
             SeyirKaydi seciliSeyir = cmbSeferler.SelectedItem as SeyirKaydi;
 
-            if (seciliSeyir.Gemi == null || seciliSeyir == null)
+            if (seciliSeyir == null)
             {
                 MessageBox.Show("Geçerli bir sefer seçilmedi yada gemi bilgisi eksik");
                 return;
@@ -149,6 +147,8 @@ namespace SeyirDefteri.UI
             gonderim.IlgilenenKisi.KisininTelefonu = msdTelefon.Text;
             gonderim.IlgilenenKisi.IlgılenenKisiId = ilgiliKisiId++;
             gonderim.IlgilenenKisi.BaglıOlduguFirma = cmbFirma.SelectedItem as Firma;
+
+           
         }
     }
 }
