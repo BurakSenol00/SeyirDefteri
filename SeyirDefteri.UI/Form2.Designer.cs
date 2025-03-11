@@ -192,6 +192,7 @@
             Controls.Add(txtKisi);
             Controls.Add(txtUrun);
             Name = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form2";
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)nupTonaj).EndInit();
