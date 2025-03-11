@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.ApplicationServices;
 using SeyirDefteri.Core.Classlar;
 
 namespace SeyirDefteri.UI
@@ -148,7 +149,19 @@ namespace SeyirDefteri.UI
             gonderim.IlgilenenKisi.IlgılenenKisiId = ilgiliKisiId++;
             gonderim.IlgilenenKisi.BaglıOlduguFirma = cmbFirma.SelectedItem as Firma;
 
-           
+            ListViewItem listViewItem = new ListViewItem();
+            listViewItem.Text = (++id).ToString();
+            listViewItem.SubItems.Add(gonderim.Tonaj.ToString());
+            listViewItem.SubItems.Add(gonderim.Urun.UrunAdi.ToString());
+            listViewItem.SubItems.Add(gonderim.IlgilenenKisi.BaglıOlduguFirma.FirmaAdi.ToString());
+            listViewItem.SubItems.Add(gonderim.IlgilenenKisi.KisininAdi.ToString());
+            listViewItem.SubItems.Add(gonderim.IlgilenenKisi.KisininTelefonu.ToString());
+            lvGonderim.Items.Add(listViewItem);
+            Temizle();
+
+
+
+
         }
     }
 }
