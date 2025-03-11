@@ -22,7 +22,7 @@ namespace SeyirDefteri.UI
         {
             foreach (var seyir in seyirkayitlari)
             {
-               
+
                 cmbSeferler.Items.Add(seyir);
             }
         }
@@ -81,7 +81,7 @@ namespace SeyirDefteri.UI
         {
             FirmalarıEkle();
             ListviewSutunEkle();
-            
+
 
         }
         int id = 1;
@@ -156,12 +156,27 @@ namespace SeyirDefteri.UI
             listViewItem.SubItems.Add(gonderim.IlgilenenKisi.BaglıOlduguFirma.FirmaAdi.ToString());
             listViewItem.SubItems.Add(gonderim.IlgilenenKisi.KisininAdi.ToString());
             listViewItem.SubItems.Add(gonderim.IlgilenenKisi.KisininTelefonu.ToString());
+
+            listViewItem.Tag = gonderim;
             lvGonderim.Items.Add(listViewItem);
+
             Temizle();
+        }
 
+        private void btnGec_Click(object sender, EventArgs e)
+        {
+            if(lvGonderim.Items.Count>0)
+            {
+                List<Gonderim> gonderimler = new List<Gonderim>();
 
+                foreach (ListViewItem  item in lvGonderim.Items)
+                {
+                    gonderimler.Add((Gonderim)item.Tag);
+                }
+                Form3 form3 = new Form3(gonderimler);
+                form3.Show();
 
-
+            }
         }
     }
 }

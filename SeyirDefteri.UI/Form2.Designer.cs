@@ -42,6 +42,7 @@
             btnUrunEkle = new Button();
             lvGonderim = new ListView();
             msdTelefon = new MaskedTextBox();
+            btnGec = new Button();
             ((System.ComponentModel.ISupportInitialize)nupTonaj).BeginInit();
             SuspendLayout();
             // 
@@ -171,12 +172,23 @@
             msdTelefon.Size = new Size(287, 27);
             msdTelefon.TabIndex = 14;
             // 
+            // btnGec
+            // 
+            btnGec.Location = new Point(406, 191);
+            btnGec.Name = "btnGec";
+            btnGec.Size = new Size(94, 29);
+            btnGec.TabIndex = 15;
+            btnGec.Text = "Sonraki";
+            btnGec.UseVisualStyleBackColor = true;
+            btnGec.Click += btnGec_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(512, 450);
+            Controls.Add(btnGec);
             Controls.Add(msdTelefon);
             Controls.Add(lvGonderim);
             Controls.Add(btnUrunEkle);
@@ -217,5 +229,6 @@
         private Button btnUrunEkle;
         private ListView lvGonderim;
         private MaskedTextBox msdTelefon;
+        private Button btnGec;
     }
 }

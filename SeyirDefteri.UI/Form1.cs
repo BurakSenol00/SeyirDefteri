@@ -4,7 +4,7 @@ namespace SeyirDefteri.UI
 {
     public partial class Form1 : Form
     {
-        public static List<SeyirKaydi> SeyirKayitlari = new List<SeyirKaydi>();
+        static List<SeyirKaydi> SeyirKayitlari = new List<SeyirKaydi>();
         public Form1()
         {
             InitializeComponent();
