@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
+
+
 using ClosedXML.Excel;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using SeyirDefteri.Core.Classlar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SeyirDefteri.UI
 {
@@ -136,7 +133,55 @@ namespace SeyirDefteri.UI
                     }
                 }
             }
-            
+
+        }
+
+        private void btnPdfOlustur_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF Dosyası|*.pdf";
+                saveFileDialog.Title = "PDF Dosyası Kaydet";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Document document = new Document();
+                    //pdf dosyasını belirtilen dosya yolunda oluşturuluyor.
+                    PdfWriter.GetInstance(document, new FileStream(saveFileDialog.FileName, FileMode.Create));
+                    document.Open();
+                    //pdf içindeki tablo oluşturup sütün sayısını paramtre olarak veriyoruz
+                    PdfPTable table = new PdfPTable(lvZRaporu.Columns.Count);
+                    table.WidthPercentage = 100;//tablo genişliği ayarlandı
+
+                    //listview başlıklarını pdfye eklıyoruz
+                    foreach (ColumnHeader column in lvZRaporu.Columns)
+                    {
+                        //başlık hücresini oluşturuyoruz içine başlıkları eklyıoruz
+                        PdfPCell cell = new PdfPCell(new Phrase(column.Text));
+                        cell.BackgroundColor = BaseColor.LIGHT_GRAY;//renk verşyoruz
+                        table.AddCell(cell);//başlık hücresini eklıyoruz
+                    }
+                    //pdfye listviewlewri ekliyoruz
+                    foreach (ListViewItem item in lvZRaporu.Items)
+                    {
+                        //her bir listviewıtemı alt öğrelerini hücrelere ekliyoruz
+                        foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
+                        {
+                            table.AddCell(subItem.Text);
+                        }
+                    }
+                    //tabloyu pdf belgesine ekliyoruz
+                    document.Add(table);
+                    document.Close();
+
+                    MessageBox.Show("PDF başarıyla kaydedildi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
         }
     }
 
