@@ -6,7 +6,6 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using SeyirDefteri.Core.Classlar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 namespace SeyirDefteri.UI
 {
     public partial class Form3 : Form
@@ -20,7 +19,6 @@ namespace SeyirDefteri.UI
         {
             Gonderimler = gonderimler;
         }
-        decimal kalanTonaj;
         private void ListViewKolonEkle()
         {
             lvZRaporu.View = View.Details;
@@ -46,8 +44,6 @@ namespace SeyirDefteri.UI
                 decimal gemiTonaji = grup.First().SeyirKaydi.Gemi?.Tonaji ?? 0;
                 decimal toplamKullanilanTonaj = 0;
 
-                
-
                 foreach  (Gonderim gonderim in grup)
                 {
                     toplamKullanilanTonaj += gonderim.Tonaj;
@@ -71,9 +67,6 @@ namespace SeyirDefteri.UI
                     }
                     lvZRaporu.Items.Add(listViewItem);
                 }
-                   
-                    
-                
             }
         }
         private void Form3_Load(object sender, EventArgs e)
@@ -89,13 +82,8 @@ namespace SeyirDefteri.UI
         {
             ListeyiGuncelle();
         }
-
         private void btnExcelOlustur_Click(object sender, EventArgs e)
         {
-            //DateTime baslangicTarihi = dtpBaslangic.Value.Date;
-            //DateTime bitisTarihi = dtpBitis.Value.Date;
-            //ListeyiGuncelle(baslangicTarihi, bitisTarihi);
-
             using (var workbook = new XLWorkbook())
             {
                 var workSheet = workbook.AddWorksheet("ZRaporu");
@@ -136,7 +124,6 @@ namespace SeyirDefteri.UI
             }
 
         }
-
         private void btnPdfOlustur_Click(object sender, EventArgs e)
         {
             try
@@ -184,7 +171,6 @@ namespace SeyirDefteri.UI
                 MessageBox.Show("Hata: " + ex.Message);
             }
         }
-
         private void btnMailAt_Click(object sender, EventArgs e)
         {
             string excelDosyaYolu = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),"ZRaporu.xlsx");
