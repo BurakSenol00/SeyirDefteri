@@ -39,21 +39,19 @@ namespace SeyirDefteri.UI
             DateTime baslangicTarihi = dtpBaslangic.Value.Date;
             DateTime bitisTarihi = dtpBitis.Value.Date;
 
-            decimal toplamKullanilanTonaj = 0;
-            decimal gemiTonajı = 0;
-
-            foreach (Gonderim gonderim in Gonderimler)
+            var gemiBazliGonderim = Gonderimler.Where(g => g.SeyirKaydi.LimandanCikisTarihi.Date >= baslangicTarihi && g.SeyirKaydi.LimanaVarisTarihi.Date <= bitisTarihi).GroupBy(g => g.SeyirKaydi.Gemi.GemiAdi).ToList();
+            lvZRaporu.Items.Clear();
+            foreach (var grup in gemiBazliGonderim)
             {
-                DateTime limandanCikisTarihi = gonderim.SeyirKaydi.LimandanCikisTarihi.Date;
-                DateTime limanaVarisTarihi = gonderim.SeyirKaydi.LimanaVarisTarihi.Date;
-                if (limandanCikisTarihi >= baslangicTarihi && limanaVarisTarihi <= bitisTarihi)
+                decimal gemiTonaji = grup.First().SeyirKaydi.Gemi?.Tonaji ?? 0;
+                decimal toplamKullanilanTonaj = 0;
+
+                
+
+                foreach  (Gonderim gonderim in grup)
                 {
-                    if (gemiTonajı <= 0)
-                    {
-                        gemiTonajı = gonderim.SeyirKaydi.Gemi.Tonaji;
-                    }
                     toplamKullanilanTonaj += gonderim.Tonaj;
-                    kalanTonaj = gemiTonajı - toplamKullanilanTonaj;
+                   decimal kalanTonaj= gemiTonaji - toplamKullanilanTonaj;
 
                     ListViewItem listViewItem = new ListViewItem();
                     listViewItem.Text = gonderim.SeyirKaydi.Gemi.GemiAdi;
@@ -73,6 +71,9 @@ namespace SeyirDefteri.UI
                     }
                     lvZRaporu.Items.Add(listViewItem);
                 }
+                   
+                    
+                
             }
         }
         private void Form3_Load(object sender, EventArgs e)
