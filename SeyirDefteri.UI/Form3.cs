@@ -1,6 +1,6 @@
 ﻿
-
-
+using System.Net;
+using System.Net.Mail;
 using ClosedXML.Excel;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -182,6 +182,46 @@ namespace SeyirDefteri.UI
             {
                 MessageBox.Show("Hata: " + ex.Message);
             }
+        }
+
+        private void btnMailAt_Click(object sender, EventArgs e)
+        {
+            string excelDosyaYolu = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),"ZRaporu.xlsx");
+            using(var workBook = new XLWorkbook())
+            {
+                var worksheet = workBook.Worksheets.Add("Gönderim ZRaporu");
+
+                for (int col = 0; col < lvZRaporu.Items.Count; col++)
+                {
+                    worksheet.Cell(1, col + 1).Value = lvZRaporu.Columns[col].Text;
+                }
+                int row = 2;
+
+                foreach (ListViewItem item in lvZRaporu.Items)
+                {
+                    for (int i = 0; i < item.SubItems.Count; i++)
+                    {
+                        worksheet.Cell(row, i + 1).Value = item.SubItems[i].Text;
+                    }
+                    row++;
+                }
+                workBook.SaveAs(excelDosyaYolu);
+            }
+            MailMessage mailMessage = new MailMessage();
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+            mailMessage.From = new MailAddress("gönderen kişinin mail adresi");
+            mailMessage.To.Add("alıcının mail adresi");
+            mailMessage.Subject = "Gönderimin ZRaporu";
+            mailMessage.Body = "Konunun içeriği";
+
+            mailMessage.Attachments.Add(new Attachment(excelDosyaYolu));
+
+            smtpClient.Port = 587;
+            smtpClient.Credentials = new NetworkCredential("gönderenin maili","uygulama şifresi");
+
+            smtpClient.EnableSsl = true;
+            smtpClient.Send(mailMessage);
+            MessageBox.Show("Eposta gönderildi");
         }
     }
 

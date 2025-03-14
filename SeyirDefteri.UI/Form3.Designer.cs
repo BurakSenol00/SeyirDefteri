@@ -88,6 +88,7 @@
             btnMailAt.TabIndex = 2;
             btnMailAt.Text = "Excel Dosyasına Mail  At";
             btnMailAt.UseVisualStyleBackColor = true;
+            btnMailAt.Click += btnMailAt_Click;
             // 
             // Form3
             // 
